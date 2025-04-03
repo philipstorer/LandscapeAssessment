@@ -7,7 +7,7 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 # Load GPT prompt configuration securely
 GPT_SYSTEM_PROMPT = st.secrets["GPT_SYSTEM_PROMPT"]
 
-st.title("🩺 Pharma Market Landscape Analysis GPT")
+st.title("🩺 Market Landscape Analysis")
 
 with st.form("analysis_form"):
     brand = st.text_input("Brand Name (optional)", placeholder="e.g., Keytruda")
