@@ -1,10 +1,10 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 
-# Securely access your API key from Streamlit's secrets
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+# Load API key from Streamlit secrets
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-# Insert your GPT prompt securely in Streamlit secrets as well
+# Load GPT prompt configuration securely
 GPT_SYSTEM_PROMPT = st.secrets["GPT_SYSTEM_PROMPT"]
 
 st.title("🩺 Pharma Market Landscape Analysis GPT")
@@ -29,7 +29,7 @@ if submit:
         """
 
         with st.spinner('Generating analysis...'):
-            response = openai.ChatCompletion.create(
+            response = client.chat.completions.create(
                 model="gpt-4-turbo",
                 messages=[
                     {"role": "system", "content": GPT_SYSTEM_PROMPT},
